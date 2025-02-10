@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>Theme.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #8c8c8c; font-style: italic;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Theme.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.emptyactivity.ui.theme</span>
+
+<span class="s1">import android.app.Activity</span>
+<span class="s1">import android.os.Build</span>
+<span class="s1">import androidx.compose.foundation.isSystemInDarkTheme</span>
+<span class="s1">import androidx.compose.material3.MaterialTheme</span>
+<span class="s1">import androidx.compose.material3.darkColorScheme</span>
+<span class="s1">import androidx.compose.material3.dynamicDarkColorScheme</span>
+<span class="s1">import androidx.compose.material3.dynamicLightColorScheme</span>
+<span class="s1">import androidx.compose.material3.lightColorScheme</span>
+<span class="s1">import androidx.compose.runtime.Composable</span>
+<span class="s1">import androidx.compose.ui.platform.LocalContext</span>
+
+<span class="s1">private </span><span class="s0">val </span><span class="s1">DarkColorScheme = darkColorScheme(</span>
+    <span class="s1">primary = Purple80,</span>
+    <span class="s1">secondary = PurpleGrey80,</span>
+    <span class="s1">tertiary = Pink80</span>
+<span class="s1">)</span>
+
+<span class="s1">private </span><span class="s0">val </span><span class="s1">LightColorScheme = lightColorScheme(</span>
+    <span class="s1">primary = Purple40,</span>
+    <span class="s1">secondary = PurpleGrey40,</span>
+    <span class="s1">tertiary = Pink40</span>
+
+    <span class="s2">/* Other default colors to override 
+    background = Color(0xFFFFFBFE), 
+    surface = Color(0xFFFFFBFE), 
+    onPrimary = Color.White, 
+    onSecondary = Color.White, 
+    onTertiary = Color.White, 
+    onBackground = Color(0xFF1C1B1F), 
+    onSurface = Color(0xFF1C1B1F), 
+    */</span>
+<span class="s1">)</span>
+
+<span class="s1">@Composable</span>
+<span class="s0">fun </span><span class="s1">EmptyActivityTheme(</span>
+    <span class="s1">darkTheme: Boolean = isSystemInDarkTheme(),</span>
+    <span class="s2">// Dynamic color is available on Android 12+</span>
+    <span class="s1">dynamicColor: Boolean = </span><span class="s0">true</span><span class="s1">,</span>
+    <span class="s1">content: @Composable () -&gt; Unit</span>
+<span class="s1">) {</span>
+    <span class="s0">val </span><span class="s1">colorScheme = </span><span class="s0">when </span><span class="s1">{</span>
+        <span class="s1">dynamicColor &amp;&amp; Build.VERSION.SDK_INT &gt;= Build.VERSION_CODES.S -&gt; {</span>
+            <span class="s0">val </span><span class="s1">context = LocalContext.current</span>
+            <span class="s0">if </span><span class="s1">(darkTheme) dynamicDarkColorScheme(context) </span><span class="s0">else </span><span class="s1">dynamicLightColorScheme(context)</span>
+        <span class="s1">}</span>
+
+        <span class="s1">darkTheme -&gt; DarkColorScheme</span>
+        <span class="s0">else </span><span class="s1">-&gt; LightColorScheme</span>
+    <span class="s1">}</span>
+
+    <span class="s1">MaterialTheme(</span>
+        <span class="s1">colorScheme = colorScheme,</span>
+        <span class="s1">typography = Typography,</span>
+        <span class="s1">content = content</span>
+    <span class="s1">)</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
